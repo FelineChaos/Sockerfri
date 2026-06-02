@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Sweet Escape</title>
-  <meta name="theme-color" content="#111218" />
-  <meta name="description" content="Sweet Escape hjälper dig räkna dagar utan socker, följa sug, vikt och milstolpar." />
+  <meta name="theme-color" content="#071f22" />
+  <meta name="description" content="Sweet Escape hjälper dig räkna dagar utan socker, följa sug, vikt och pengar sparade." />
 
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon-192.png" />
@@ -14,19 +14,22 @@
 
   <style>
     :root {
-      --bg: #111218;
-      --text: #f7f7fb;
-      --muted: #b9bbc8;
-      --soft: rgba(255,255,255,.10);
-      --soft2: rgba(255,255,255,.16);
+      --bg: #071f22;
+      --bg2: #0d3032;
+      --card: rgba(255,255,255,.095);
+      --card2: rgba(255,255,255,.145);
       --line: rgba(255,255,255,.14);
-      --pink: #ff8fb3;
-      --mint: #8be7c4;
-      --yellow: #ffe08a;
-      --red: #ff7272;
-      --green: #8be7c4;
+      --text: #f7fffb;
+      --muted: #a9c4be;
+      --mint: #7ff0c4;
+      --mint2: #3ad6b0;
+      --coral: #ff7e67;
+      --coral2: #ffad73;
+      --gold: #ffd36e;
+      --red: #ff6b6b;
+      --green: #7ff0c4;
+      --shadow: 0 26px 80px rgba(0,0,0,.38);
       --radius: 28px;
-      --shadow: 0 24px 70px rgba(0,0,0,.38);
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -36,92 +39,80 @@
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(255,143,179,.38), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(139,231,196,.28), transparent 36%),
-        var(--bg);
+        radial-gradient(circle at top left, rgba(255,126,103,.34), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(127,240,196,.30), transparent 35%),
+        linear-gradient(160deg, var(--bg), var(--bg2));
       color: var(--text);
       padding: 18px;
     }
 
     .wrap {
-      width: min(500px, 100%);
+      width: min(520px, 100%);
       margin: 0 auto;
-      padding-bottom: 24px;
+      padding-bottom: 28px;
     }
 
-    header {
-      margin: 14px 0 16px;
-      padding: 22px;
-      border-radius: 32px;
-      background: linear-gradient(145deg, rgba(255,255,255,.15), rgba(255,255,255,.06));
+    .hero-card {
+      background: linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,255,255,.06));
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
+      border-radius: 36px;
+      padding: 22px;
+      margin: 12px 0 16px;
+      overflow: hidden;
+      position: relative;
     }
 
     .brand {
       display: flex;
-      gap: 12px;
       align-items: center;
-      margin-bottom: 18px;
+      gap: 13px;
+      margin-bottom: 20px;
     }
 
     .logo {
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--pink), var(--mint));
-      color: #111;
+      width: 62px;
+      height: 62px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 12px 28px rgba(0,0,0,.30);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+
+    .brand-title {
+      font-size: 20px;
       font-weight: 950;
-      font-size: 24px;
+      letter-spacing: -.2px;
     }
 
-    .brand strong { font-size: 17px; }
-    .brand div:last-child { color: var(--muted); font-size: 13px; }
-
-    h1 {
-      margin: 0;
-      font-size: 35px;
-      line-height: 1.03;
-      letter-spacing: -1px;
-    }
-
-    .sub {
-      margin: 10px 0 0;
+    .brand-sub {
       color: var(--muted);
-      line-height: 1.45;
-      font-size: 15px;
+      font-size: 13px;
+      margin-top: 3px;
     }
 
-    .card {
-      background: rgba(255,255,255,.10);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px;
-      margin-bottom: 14px;
-      backdrop-filter: blur(16px);
-    }
-
-    .hero {
+    .days-row {
       text-align: center;
-      padding: 28px 18px;
+      padding: 10px 0 8px;
     }
 
     .days {
-      font-size: 96px;
-      line-height: .85;
-      font-weight: 950;
-      letter-spacing: -6px;
-      background: linear-gradient(135deg, var(--pink), var(--mint));
+      font-size: 112px;
+      line-height: .82;
+      font-weight: 1000;
+      letter-spacing: -8px;
+      background: linear-gradient(135deg, var(--coral), var(--gold), var(--mint));
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    .label {
-      margin-top: 12px;
+    .days-label {
+      margin-top: 13px;
       color: var(--muted);
-      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 13px;
     }
 
     .progress-head {
@@ -130,21 +121,22 @@
       color: var(--muted);
       font-size: 13px;
       margin: 24px 0 8px;
+      gap: 12px;
     }
 
     .bar {
-      height: 13px;
+      height: 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,.13);
+      background: rgba(255,255,255,.14);
       overflow: hidden;
     }
 
     .fill {
       height: 100%;
-      width: 0;
+      width: 0%;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--pink), var(--mint));
-      transition: width .4s ease;
+      background: linear-gradient(90deg, var(--coral), var(--gold), var(--mint));
+      transition: width .45s ease;
     }
 
     .grid {
@@ -154,17 +146,42 @@
       margin-bottom: 14px;
     }
 
-    .stat {
-      background: rgba(255,255,255,.085);
+    .stat, .card {
+      background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 16px;
+      border-radius: var(--radius);
+      backdrop-filter: blur(18px);
     }
 
-    .stat strong { display: block; font-size: 27px; line-height: 1; }
-    .stat span { display: block; color: var(--muted); font-size: 13px; margin-top: 7px; }
+    .stat {
+      padding: 16px;
+      min-height: 92px;
+    }
 
-    h2 { font-size: 19px; margin: 0 0 12px; }
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .card {
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin: 0 0 12px;
+      letter-spacing: -.2px;
+    }
 
     label {
       display: block;
@@ -173,90 +190,162 @@
       margin: 12px 0 7px;
     }
 
-    input, textarea, button, select {
+    input, textarea, button {
       width: 100%;
       border: 0;
       border-radius: 18px;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 750;
       font-family: inherit;
     }
 
-    input, textarea, select {
+    input, textarea {
       padding: 15px;
-      background: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.115);
       color: var(--text);
       border: 1px solid var(--line);
       outline: none;
     }
 
-    textarea { resize: vertical; min-height: 88px; line-height: 1.35; }
-
+    input::placeholder, textarea::placeholder { color: rgba(233,255,246,.43); }
     input::-webkit-calendar-picker-indicator { filter: invert(1); opacity: .75; }
 
+    textarea {
+      min-height: 88px;
+      resize: vertical;
+      line-height: 1.4;
+    }
+
     button {
-      padding: 16px;
       margin-top: 10px;
+      padding: 16px;
+      color: #102426;
+      background: linear-gradient(135deg, var(--coral), var(--gold));
       cursor: pointer;
-      color: #111;
-      background: linear-gradient(135deg, var(--pink), var(--mint));
+      box-shadow: 0 12px 30px rgba(255,126,103,.18);
     }
 
     .secondary {
       background: rgba(255,255,255,.14);
       color: var(--text);
       border: 1px solid var(--line);
+      box-shadow: none;
     }
 
     .danger {
-      background: rgba(255,114,114,.18);
-      color: #ffdede;
-      border: 1px solid rgba(255,114,114,.38);
+      background: rgba(255,107,107,.18);
+      color: #ffe0dc;
+      border: 1px solid rgba(255,107,107,.36);
+      box-shadow: none;
     }
 
     .panic {
-      font-size: 17px;
-      background: linear-gradient(135deg, var(--red), var(--yellow));
-      color: #111;
+      font-size: 18px;
+      padding: 18px;
+      background: linear-gradient(135deg, #ff5e62, var(--coral), var(--gold));
+      color: #15100d;
+      text-transform: uppercase;
+      letter-spacing: .02em;
     }
 
-    .milestone {
+    .note, .box {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .box {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .savings-big {
+      font-size: 38px;
+      font-weight: 1000;
+      letter-spacing: -1.5px;
+      color: var(--mint);
+      margin: 4px 0 6px;
+    }
+
+    .goalbar {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .goalfill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--mint), var(--gold), var(--coral));
+    }
+
+    .badge-row {
+      display: grid;
+      gap: 10px;
+    }
+
+    .badge-card {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 12px;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      padding: 13px;
+      border-radius: 19px;
+      background: rgba(255,255,255,.075);
+      border: 1px solid rgba(255,255,255,.09);
       color: var(--muted);
     }
 
-    .milestone:last-child { border-bottom: 0; }
+    .badge-card.done {
+      color: var(--text);
+      background: rgba(127,240,196,.14);
+      border-color: rgba(127,240,196,.25);
+    }
 
-    .badge {
+    .pill {
       white-space: nowrap;
+      font-size: 12px;
+      font-weight: 900;
       padding: 7px 10px;
       border-radius: 999px;
-      font-size: 12px;
-      font-weight: 850;
       background: rgba(255,255,255,.12);
       color: var(--muted);
     }
 
-    .done { color: var(--text); }
-    .done .badge { background: rgba(139,231,196,.20); color: var(--mint); }
-
-    .quote, .install, .why-box {
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 14px;
-      margin: 0;
+    .done .pill {
+      color: var(--mint);
+      background: rgba(127,240,196,.18);
     }
 
-    .why-box {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.08);
-      margin-top: 12px;
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .chart {
+      display: flex;
+      align-items: end;
+      gap: 7px;
+      height: 150px;
+      padding: 14px 4px 2px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+      margin-top: 10px;
+    }
+
+    .barcol {
+      flex: 1;
+      min-width: 8px;
+      border-radius: 999px 999px 5px 5px;
+      background: linear-gradient(180deg, var(--mint), var(--coral));
+      height: 4%;
     }
 
     .calendar {
@@ -282,117 +371,119 @@
       padding: 5px 0;
       background: transparent;
       border: 0;
-      font-weight: 800;
+      font-weight: 900;
+      color: rgba(233,255,246,.65);
     }
 
-    .clean { background: rgba(139,231,196,.22); color: var(--mint); }
-    .relapse { background: rgba(255,114,114,.22); color: #ffd0d0; }
-    .today { outline: 2px solid var(--yellow); }
+    .clean { background: rgba(127,240,196,.20); color: var(--mint); }
+    .relapse { background: rgba(255,107,107,.22); color: #ffd0cb; }
+    .today { outline: 2px solid var(--gold); color: var(--gold); }
 
-    .chart {
-      display: flex;
-      align-items: end;
-      gap: 7px;
-      height: 150px;
-      padding: 12px 4px 2px;
-      border-bottom: 1px solid rgba(255,255,255,.14);
-    }
-
-    .barcol {
-      flex: 1;
-      min-width: 8px;
-      border-radius: 999px 999px 4px 4px;
-      background: linear-gradient(180deg, var(--pink), var(--mint));
-      height: 3%;
-    }
-
-    .small-note {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.4;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      align-items: end;
-    }
-
-    footer {
+    .timer {
+      font-size: 48px;
       text-align: center;
-      color: rgba(255,255,255,.42);
-      font-size: 12px;
-      padding: 10px 10px 0;
+      font-weight: 1000;
+      color: var(--gold);
+      margin: 12px 0 0;
     }
 
     .hidden { display: none; }
+
+    footer {
+      text-align: center;
+      color: rgba(233,255,246,.42);
+      font-size: 12px;
+      padding: 8px 10px 0;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header>
+    <section class="hero-card">
       <div class="brand">
-        <div class="logo">SE</div>
+        <img class="logo" src="icon-192.png" alt="Sweet Escape logo" />
         <div>
-          <strong>Sweet Escape</strong>
-          <div>sockerfri streak tracker</div>
+          <div class="brand-title">Sweet Escape</div>
+          <div class="brand-sub">Din väg bort från sockret</div>
         </div>
       </div>
-      <h1>Räkna dina dagar utan socker.</h1>
-      <p class="sub">Streak, sug, vikt, milstolpar och nödläge. Allt lokalt på din mobil, för tydligen måste vi numera ha ett kontrollrum för att besegra godishyllan.</p>
-    </header>
 
-    <section class="card hero">
-      <div class="days" id="days">0</div>
-      <div class="label" id="label">Starta din streak</div>
-      <div class="progress-head">
-        <span id="nextMilestone">Nästa mål: 7 dagar</span>
-        <span id="percent">0%</span>
+      <div class="days-row">
+        <div class="days" id="days">0</div>
+        <div class="days-label">Dagar sockerfri</div>
       </div>
-      <div class="bar"><div class="fill" id="fill"></div></div>
+
+      <div class="progress-head">
+        <span id="nextBadge">Nästa badge: 1 dag</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="bar"><div class="fill" id="progressFill"></div></div>
     </section>
 
     <section class="grid">
-      <div class="stat"><strong id="best">0</strong><span>Bästa streak</span></div>
-      <div class="stat"><strong id="weeks">0</strong><span>Hela veckor</span></div>
-      <div class="stat"><strong id="goalLeft">7</strong><span>Dagar till nästa mål</span></div>
-      <div class="stat"><strong id="resets">0</strong><span>Omstarter</span></div>
+      <div class="stat"><strong id="best">0</strong><span>Längsta streak</span></div>
+      <div class="stat"><strong id="moneySavedMini">0 kr</strong><span>Pengar sparade</span></div>
+      <div class="stat"><strong id="cravingAvg">–</strong><span>Snitt sug</span></div>
+      <div class="stat"><strong id="weightDiff">–</strong><span>Viktförändring</span></div>
     </section>
 
     <section class="card">
-      <h2>Mitt varför</h2>
-      <label for="whyInput">Varför vill du sluta med socker?</label>
-      <textarea id="whyInput" placeholder="Ex: Jag vill känna mig piggare, få kontroll och må bättre."></textarea>
-      <button id="saveWhyBtn">Spara mitt varför</button>
-      <div class="why-box" id="whyBox">Ditt varför visas här när du sparat det.</div>
-    </section>
-
-    <section class="card">
-      <h2>Startdatum</h2>
+      <h2>Start & varför</h2>
       <label for="startDate">När började du?</label>
       <input type="date" id="startDate" />
-      <button id="saveBtn">Spara startdatum</button>
+      <button id="saveStartBtn">Spara startdatum</button>
       <button class="secondary" id="todayBtn">Jag börjar idag</button>
       <button class="danger" id="resetBtn">Starta om streaken</button>
+
+      <label for="whyInput">Ditt varför</label>
+      <textarea id="whyInput" placeholder="Ex: Jag vill känna mig piggare, få kontroll och må bättre."></textarea>
+      <button id="saveWhyBtn">Spara mitt varför</button>
+      <div class="box" id="whyBox">Ditt varför visas här när du sparat det.</div>
+    </section>
+
+    <section class="card">
+      <h2>Pengar sparade</h2>
+      <p class="note">Skriv ungefär hur mycket du brukar lägga på sötsaker per vecka. Appen räknar ut sparade pengar automatiskt.</p>
+      <label for="weeklySpend">Kronor per vecka</label>
+      <input type="number" id="weeklySpend" placeholder="Ex: 500" />
+      <button id="saveSpendBtn">Spara veckobelopp</button>
+      <div class="savings-big" id="moneySavedBig">0 kr</div>
+      <p class="note" id="moneyText">Spara ett veckobelopp för att börja räkna.</p>
+    </section>
+
+    <section class="card">
+      <h2>Mitt sparmål</h2>
+      <label for="goalName">Vad sparar du till?</label>
+      <input type="text" id="goalName" placeholder="Ex: Londonresa" />
+      <label for="goalAmount">Målbelopp</label>
+      <input type="number" id="goalAmount" placeholder="Ex: 5000" />
+      <button id="saveGoalBtn">Spara sparmål</button>
+      <div class="box" id="goalText">Spara ett mål för att se din progress.</div>
+      <div class="goalbar"><div class="goalfill" id="goalFill"></div></div>
     </section>
 
     <section class="card">
       <h2>Nödläge</h2>
-      <p class="quote">Tryck här när suget blir löjligt starkt och hjärnan börjar förhandla som en desperat liten godisadvokat.</p>
-      <button class="panic" id="panicBtn">Jag håller på att ge upp</button>
-      <div class="why-box hidden" id="panicBox"></div>
+      <p class="note">När hjärnan börjar sälja in godis som om det vore en livsnödvändig medicinsk behandling.</p>
+      <button class="panic" id="panicBtn">JAG VILL HA GODIS!</button>
+      <div class="box hidden" id="panicBox"></div>
+      <div class="timer hidden" id="timer">15:00</div>
+    </section>
+
+    <section class="card">
+      <h2>Dagens pepp</h2>
+      <div class="box" id="dailyPep"></div>
+      <div class="box" id="healthPep"></div>
     </section>
 
     <section class="card">
       <h2>Dagens sug</h2>
       <label for="craving">Hur starkt är sötsuget idag? 1-10</label>
       <input type="range" id="craving" min="1" max="10" value="5" />
-      <div class="small-note">Valt värde: <strong id="cravingValue">5</strong></div>
+      <p class="note">Valt värde: <strong id="cravingValue">5</strong>/10</p>
       <button id="saveCravingBtn">Spara dagens sug</button>
       <div class="chart" id="cravingChart"></div>
-      <div class="small-note" id="cravingNote">Senaste 14 dagarna visas här.</div>
+      <p class="note" id="cravingNote">Senaste 14 dagarna visas här.</p>
     </section>
 
     <section class="card">
@@ -409,31 +500,24 @@
       </div>
       <button id="saveWeightBtn">Spara vikt</button>
       <div class="chart" id="weightChart"></div>
-      <div class="small-note" id="weightNote">Frivillig funktion. Inga pekpinnar, vilket är chockerande moget.</div>
+      <p class="note" id="weightNote">Frivillig funktion. Ingen skam, bara data.</p>
     </section>
 
     <section class="card">
-      <h2>Milstolpar & badges</h2>
-      <div id="milestones"></div>
+      <h2>Badges</h2>
+      <div class="badge-row" id="badges"></div>
     </section>
 
     <section class="card">
       <h2>Kalender</h2>
-      <div class="small-note" id="calendarTitle"></div>
+      <p class="note" id="calendarTitle"></p>
       <div class="calendar" id="calendar"></div>
-    </section>
-
-    <section class="card">
-      <h2>Dagens påminnelse</h2>
-      <p class="quote" id="quote"></p>
+      <p class="note">Grön = sockerfri. Röd = omstart. Gul ring = idag.</p>
     </section>
 
     <section class="card">
       <h2>Installera appen</h2>
-      <p class="install">
-        Öppna länken i Chrome. Tryck på <strong>⋮</strong> och välj
-        <strong>Installera app</strong> eller <strong>Lägg till på startskärmen</strong>.
-      </p>
+      <p class="note">Öppna länken i Chrome, tryck på ⋮ och välj Installera app eller Lägg till på startskärmen.</p>
     </section>
 
     <footer>Sweet Escape sparar data lokalt på din enhet.</footer>
@@ -441,30 +525,40 @@
 
   <script>
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));
+      window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js?v=3"));
     }
 
     const $ = id => document.getElementById(id);
 
-    const milestones = [
-      [1, "🥉 Första flykten"],
-      [3, "🌱 Tre dagar"],
-      [7, "🔥 En vecka"],
-      [14, "💪 Två veckor"],
-      [30, "🏆 En månad"],
-      [60, "💎 Två månader"],
-      [100, "👑 Hundra dagar"],
-      [365, "🌟 Ett år"]
+    const badgeList = [
+      [1, "🥉 Första steget", "1 dag"],
+      [7, "🔥 En vecka", "7 dagar"],
+      [14, "🏅 Två veckor", "14 dagar"],
+      [30, "🥇 En månad", "30 dagar"],
+      [60, "💎 Två månader", "60 dagar"],
+      [100, "👑 Hundra dagar", "100 dagar"],
+      [365, "🌟 Ett år", "1 år"]
     ];
 
-    const quotes = [
-      "Craving är inte ett kommando. Det är bara hjärnan som skickar spam.",
-      "En dag till. Sockret kan vänta, dramatiskt nog.",
-      "Du bygger disciplin. Det är långsamt, irriterande och effektivt.",
-      "Perfekt behövs inte. Fortsätt bara.",
-      "Streaken lever. Vackert. Nästan provocerande.",
-      "Tio minuter godis är inte värt att kasta bort allt du byggt."
+    const personalPeps = [
+      "Du behöver inte klara resten av livet idag. Bara idag.",
+      "Sötsug är en känsla. Inte en order.",
+      "Framsteg slår perfektion.",
+      "Du bygger en vana varje gång du säger nej.",
+      "Det här är inte straff. Det är frihet med bättre marknadsföring.",
+      "Ett sug går över. En seger stannar kvar."
     ];
+
+    function healthText(days) {
+      if (days >= 365) return "Ett helt år. Det här är inte längre en tillfällig utmaning. Det är en livsstilsförändring.";
+      if (days >= 100) return "Efter 100 dagar har du byggt en stark rutin. Kroppen gillar stabilitet, även om den är usel på att skriva tackkort.";
+      if (days >= 60) return "Efter två månader känns nya vanor ofta mer naturliga och lättare att hålla fast vid.";
+      if (days >= 30) return "Efter omkring en månad börjar många uppleva att nya rutiner sitter bättre i vardagen.";
+      if (days >= 14) return "Efter två veckor har du bevisat att det här inte bara var en impuls från en dramatisk måndag.";
+      if (days >= 7) return "Efter första veckan upplever många att sötsuget börjar bli lättare att hantera.";
+      if (days >= 1) return "Första dagen är viktig. Inte för att den är magisk, utan för att den faktiskt hände.";
+      return "Sätt ett startdatum och låt Sweet Escape börja räkna din väg framåt.";
+    }
 
     function todayISO() {
       return new Date().toISOString().split("T")[0];
@@ -477,6 +571,10 @@
       return Math.max(0, Math.floor((today - start) / 86400000));
     }
 
+    function fmt(num) {
+      return Math.round(num).toLocaleString("sv-SE") + " kr";
+    }
+
     function getJSON(key, fallback) {
       try { return JSON.parse(localStorage.getItem(key)) || fallback; }
       catch { return fallback; }
@@ -486,45 +584,50 @@
       localStorage.setItem(key, JSON.stringify(value));
     }
 
-    function renderMilestones(days) {
-      $("milestones").innerHTML = milestones.map(([needed, title]) => {
-        const ok = days >= needed;
+    function currentDays() {
+      const start = localStorage.getItem("seStart");
+      return start ? daysBetween(start) : 0;
+    }
+
+    function moneySaved(days=currentDays()) {
+      const weekly = Number(localStorage.getItem("seWeeklySpend") || 0);
+      return weekly ? (weekly / 7) * days : 0;
+    }
+
+    function nextBadge(days) {
+      return badgeList.find(([d]) => d > days) || badgeList[badgeList.length - 1];
+    }
+
+    function renderBadges(days) {
+      $("badges").innerHTML = badgeList.map(([needed, title, label]) => {
+        const done = days >= needed;
         return `
-          <div class="milestone ${ok ? "done" : ""}">
-            <span>${title} · ${needed} ${needed === 1 ? "dag" : "dagar"}</span>
-            <span class="badge">${ok ? "Låst upp" : (needed - days) + " kvar"}</span>
+          <div class="badge-card ${done ? "done" : ""}">
+            <div><strong>${title}</strong><br><span>${label}</span></div>
+            <div class="pill">${done ? "Upplåst" : (needed - days) + " kvar"}</div>
           </div>
         `;
       }).join("");
     }
 
-    function nextMilestone(days) {
-      return milestones.find(([needed]) => needed > days) || [365, "🌟 Ett år"];
-    }
-
-    function renderChart(containerId, data, valueKey, type) {
+    function renderChart(containerId, data, valueKey, maxFixed=null) {
       const el = $(containerId);
       el.innerHTML = "";
       const recent = data.slice(-14);
       if (!recent.length) {
-        el.innerHTML = '<div class="small-note">Ingen data än.</div>';
+        el.innerHTML = '<p class="note">Ingen data än.</p>';
         return;
       }
-
-      const values = recent.map(item => Number(item[valueKey]));
+      const values = recent.map(x => Number(x[valueKey]));
       const min = Math.min(...values);
       const max = Math.max(...values);
       const range = Math.max(1, max - min);
-
       recent.forEach(item => {
         const value = Number(item[valueKey]);
-        const normalized = type === "weight"
-          ? 12 + ((value - min) / range) * 88
-          : (value / 10) * 100;
-
+        let height = maxFixed ? (value / maxFixed) * 100 : 12 + ((value - min) / range) * 88;
         const div = document.createElement("div");
         div.className = "barcol";
-        div.style.height = Math.max(6, normalized) + "%";
+        div.style.height = Math.max(6, height) + "%";
         div.title = item.date + ": " + value;
         el.appendChild(div);
       });
@@ -533,37 +636,33 @@
     function renderCalendar(start) {
       const calendar = $("calendar");
       calendar.innerHTML = "";
-      const names = ["M", "T", "O", "T", "F", "L", "S"];
-      names.forEach(n => {
-        const d = document.createElement("div");
-        d.className = "weekday";
-        d.textContent = n;
-        calendar.appendChild(d);
+      ["M","T","O","T","F","L","S"].forEach(n => {
+        const el = document.createElement("div");
+        el.className = "weekday";
+        el.textContent = n;
+        calendar.appendChild(el);
       });
 
       const now = new Date();
-      const year = now.getFullYear();
-      const month = now.getMonth();
       $("calendarTitle").textContent = now.toLocaleDateString("sv-SE", { month: "long", year: "numeric" });
-
-      const first = new Date(year, month, 1);
-      const last = new Date(year, month + 1, 0);
+      const first = new Date(now.getFullYear(), now.getMonth(), 1);
+      const last = new Date(now.getFullYear(), now.getMonth() + 1, 0);
       const offset = (first.getDay() + 6) % 7;
-      const relapses = getJSON("sweetEscapeRelapses", []);
+      const relapses = getJSON("seRelapses", []);
 
       for (let i = 0; i < offset; i++) {
         const empty = document.createElement("div");
         empty.className = "day";
-        empty.style.opacity = ".25";
+        empty.style.opacity = ".22";
         calendar.appendChild(empty);
       }
 
-      for (let day = 1; day <= last.getDate(); day++) {
-        const date = new Date(year, month, day);
+      for (let d = 1; d <= last.getDate(); d++) {
+        const date = new Date(now.getFullYear(), now.getMonth(), d);
         const iso = date.toISOString().split("T")[0];
         const div = document.createElement("div");
         div.className = "day";
-        div.textContent = day;
+        div.textContent = d;
 
         if (iso === todayISO()) div.classList.add("today");
         if (relapses.includes(iso)) div.classList.add("relapse");
@@ -573,107 +672,156 @@
       }
     }
 
-    function update() {
-      const start = localStorage.getItem("sweetEscapeStart");
-      const best = Number(localStorage.getItem("sweetEscapeBest") || 0);
-      const resets = Number(localStorage.getItem("sweetEscapeResets") || 0);
-      const why = localStorage.getItem("sweetEscapeWhy") || "";
+    let countdown = null;
 
+    function startPanicTimer() {
+      clearInterval(countdown);
+      let seconds = 15 * 60;
+      $("timer").classList.remove("hidden");
+
+      function tick() {
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        $("timer").textContent = String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+        if (seconds <= 0) {
+          clearInterval(countdown);
+          $("panicBox").innerHTML += "<br><br><strong>15 minuter har gått.</strong><br>Om du fortfarande vill ha något, välj medvetet. Inte automatiskt.";
+        }
+        seconds--;
+      }
+
+      tick();
+      countdown = setInterval(tick, 1000);
+    }
+
+    function update() {
+      const start = localStorage.getItem("seStart");
+      const days = start ? daysBetween(start) : 0;
+      const best = Math.max(Number(localStorage.getItem("seBest") || 0), days);
+      localStorage.setItem("seBest", best);
+
+      const why = localStorage.getItem("seWhy") || "";
+      const weekly = localStorage.getItem("seWeeklySpend") || "";
+      const goalName = localStorage.getItem("seGoalName") || "";
+      const goalAmount = Number(localStorage.getItem("seGoalAmount") || 0);
+      const saved = moneySaved(days);
+
+      $("startDate").value = start || "";
       $("whyInput").value = why;
       $("whyBox").textContent = why || "Ditt varför visas här när du sparat det.";
-      $("best").textContent = best;
-      $("resets").textContent = resets;
+      $("weeklySpend").value = weekly;
+      $("goalName").value = goalName;
+      $("goalAmount").value = goalAmount || "";
       $("weightDate").value = todayISO();
 
-      if (!start) {
-        $("days").textContent = "0";
-        $("label").textContent = "Starta din streak";
-        $("nextMilestone").textContent = "Nästa mål: 7 dagar";
-        $("fill").style.width = "0%";
-        $("percent").textContent = "0%";
-        $("goalLeft").textContent = "7";
-        $("weeks").textContent = "0";
-        $("quote").textContent = "Välj ett startdatum. Sweet Escape gör resten. Nåja, nästan. Du måste fortfarande låta bli godiset, tragiskt nog.";
-        renderMilestones(0);
-        renderCalendar(null);
+      $("days").textContent = days;
+      $("best").textContent = best;
+      $("moneySavedMini").textContent = fmt(saved);
+      $("moneySavedBig").textContent = fmt(saved);
+
+      const [nextDays, nextTitle] = nextBadge(days);
+      const previousBadge = [...badgeList].reverse().find(([d]) => d <= days)?.[0] || 0;
+      const segment = Math.max(1, nextDays - previousBadge);
+      const segmentProgress = Math.min(100, Math.round(((days - previousBadge) / segment) * 100));
+      $("nextBadge").textContent = days >= 365 ? "Alla badges upplåsta" : "Nästa badge: " + nextTitle;
+      $("progressPercent").textContent = segmentProgress + "%";
+      $("progressFill").style.width = segmentProgress + "%";
+
+      if (weekly) {
+        $("moneyText").textContent = "Baserat på " + fmt(Number(weekly)) + " per vecka. Du sparar cirka " + fmt(Number(weekly)/7) + " per dag.";
       } else {
-        $("startDate").value = start;
-        const days = daysBetween(start);
-        const newBest = Math.max(best, days);
-        localStorage.setItem("sweetEscapeBest", newBest);
-
-        const [nextDays, nextTitle] = nextMilestone(days);
-        const progress = Math.min(100, Math.round((days / nextDays) * 100));
-
-        $("days").textContent = days;
-        $("label").textContent = days === 1 ? "dag utan socker" : "dagar utan socker";
-        $("best").textContent = newBest;
-        $("weeks").textContent = Math.floor(days / 7);
-        $("goalLeft").textContent = Math.max(0, nextDays - days);
-        $("nextMilestone").textContent = "Nästa mål: " + nextTitle;
-        $("fill").style.width = progress + "%";
-        $("percent").textContent = progress + "%";
-        $("quote").textContent = quotes[days % quotes.length];
-        renderMilestones(days);
-        renderCalendar(start);
+        $("moneyText").textContent = "Spara ett veckobelopp för att börja räkna.";
       }
 
-      const cravings = getJSON("sweetEscapeCravings", []);
-      const weights = getJSON("sweetEscapeWeights", []);
-      renderChart("cravingChart", cravings, "value", "craving");
-      renderChart("weightChart", weights, "value", "weight");
+      if (goalName && goalAmount) {
+        const pct = Math.min(100, Math.round((saved / goalAmount) * 100));
+        $("goalText").innerHTML = "<strong>" + goalName + "</strong><br>" + fmt(saved) + " sparade av " + fmt(goalAmount) + " · " + pct + "%";
+        $("goalFill").style.width = pct + "%";
+      } else {
+        $("goalText").textContent = "Spara ett mål för att se din progress.";
+        $("goalFill").style.width = "0%";
+      }
 
+      $("dailyPep").innerHTML = "<strong>Personligt:</strong><br>" + personalPeps[days % personalPeps.length];
+      $("healthPep").innerHTML = "<strong>Hälsofördel:</strong><br>" + healthText(days);
+
+      renderBadges(days);
+      renderCalendar(start);
+
+      const cravings = getJSON("seCravings", []);
+      renderChart("cravingChart", cravings, "value", 10);
       if (cravings.length) {
-        const avg = cravings.reduce((sum, item) => sum + Number(item.value), 0) / cravings.length;
-        $("cravingNote").textContent = "Genomsnittligt sug: " + avg.toFixed(1) + "/10";
+        const avg = cravings.reduce((sum, x) => sum + Number(x.value), 0) / cravings.length;
+        $("cravingAvg").textContent = avg.toFixed(1) + "/10";
+        $("cravingNote").textContent = "Genomsnittligt sötsug: " + avg.toFixed(1) + "/10";
+      } else {
+        $("cravingAvg").textContent = "–";
+        $("cravingNote").textContent = "Senaste 14 dagarna visas här.";
       }
 
+      const weights = getJSON("seWeights", []);
+      renderChart("weightChart", weights, "value");
       if (weights.length >= 2) {
         const diff = Number(weights[weights.length - 1].value) - Number(weights[0].value);
-        $("weightNote").textContent = "Förändring sedan första vägning: " + diff.toFixed(1) + " kg";
+        $("weightDiff").textContent = (diff > 0 ? "+" : "") + diff.toFixed(1) + " kg";
+        $("weightNote").textContent = "Förändring sedan första vägning: " + (diff > 0 ? "+" : "") + diff.toFixed(1) + " kg";
+      } else {
+        $("weightDiff").textContent = "–";
+        $("weightNote").textContent = "Frivillig funktion. Ingen skam, bara data.";
       }
     }
 
-    $("saveWhyBtn").addEventListener("click", () => {
-      localStorage.setItem("sweetEscapeWhy", $("whyInput").value.trim());
-      update();
-    });
-
-    $("saveBtn").addEventListener("click", () => {
+    $("saveStartBtn").addEventListener("click", () => {
       if (!$("startDate").value) return;
-      localStorage.setItem("sweetEscapeStart", $("startDate").value);
+      localStorage.setItem("seStart", $("startDate").value);
       update();
     });
 
     $("todayBtn").addEventListener("click", () => {
-      localStorage.setItem("sweetEscapeStart", todayISO());
-      $("startDate").value = todayISO();
+      localStorage.setItem("seStart", todayISO());
       update();
     });
 
     $("resetBtn").addEventListener("click", () => {
-      const relapses = getJSON("sweetEscapeRelapses", []);
+      const relapses = getJSON("seRelapses", []);
       if (!relapses.includes(todayISO())) relapses.push(todayISO());
-      setJSON("sweetEscapeRelapses", relapses);
+      setJSON("seRelapses", relapses);
+      localStorage.setItem("seStart", todayISO());
+      update();
+    });
 
-      const resets = Number(localStorage.getItem("sweetEscapeResets") || 0) + 1;
-      localStorage.setItem("sweetEscapeResets", resets);
-      localStorage.setItem("sweetEscapeStart", todayISO());
+    $("saveWhyBtn").addEventListener("click", () => {
+      localStorage.setItem("seWhy", $("whyInput").value.trim());
+      update();
+    });
+
+    $("saveSpendBtn").addEventListener("click", () => {
+      localStorage.setItem("seWeeklySpend", $("weeklySpend").value || "");
+      update();
+    });
+
+    $("saveGoalBtn").addEventListener("click", () => {
+      localStorage.setItem("seGoalName", $("goalName").value.trim());
+      localStorage.setItem("seGoalAmount", $("goalAmount").value || "");
       update();
     });
 
     $("panicBtn").addEventListener("click", () => {
-      const start = localStorage.getItem("sweetEscapeStart");
-      const days = start ? daysBetween(start) : 0;
-      const why = localStorage.getItem("sweetEscapeWhy") || "Du började av en anledning. Skriv gärna in den under Mitt varför.";
+      const days = currentDays();
+      const why = localStorage.getItem("seWhy") || "Du började av en anledning. Skriv gärna in den under Start & varför.";
+      const saved = moneySaved(days);
       $("panicBox").classList.remove("hidden");
       $("panicBox").innerHTML = `
-        <strong>Stanna upp.</strong><br><br>
-        Du har klarat <strong>${days}</strong> ${days === 1 ? "dag" : "dagar"}.
-        Ett sug är inte ett beslut. Det är en våg. Den går över.<br><br>
+        <strong>Vänta 15 minuter först.</strong><br><br>
+        Du har klarat <strong>${days}</strong> ${days === 1 ? "dag" : "dagar"}.<br>
+        Du har sparat cirka <strong>${fmt(saved)}</strong>.<br><br>
         <strong>Ditt varför:</strong><br>${why}<br><br>
-        Drick vatten, vänta 10 minuter, gör något annat. Sockret får inte vinna på walkover.
+        🫗 Drick ett glas vatten.<br>
+        🚶 Gå en kort promenad.<br>
+        ⏳ Vänta tills timern är klar.<br><br>
+        Sockret får inte vinna på walkover.
       `;
+      startPanicTimer();
     });
 
     $("craving").addEventListener("input", () => {
@@ -681,26 +829,26 @@
     });
 
     $("saveCravingBtn").addEventListener("click", () => {
-      const data = getJSON("sweetEscapeCravings", []);
+      const data = getJSON("seCravings", []);
       const date = todayISO();
       const value = Number($("craving").value);
-      const existing = data.find(item => item.date === date);
+      const existing = data.find(x => x.date === date);
       if (existing) existing.value = value;
       else data.push({ date, value });
-      setJSON("sweetEscapeCravings", data);
+      setJSON("seCravings", data);
       update();
     });
 
     $("saveWeightBtn").addEventListener("click", () => {
-      if (!$("weightInput").value || !$("weightDate").value) return;
-      const data = getJSON("sweetEscapeWeights", []);
+      if (!$("weightDate").value || !$("weightInput").value) return;
+      const data = getJSON("seWeights", []);
       const date = $("weightDate").value;
       const value = Number($("weightInput").value);
-      const existing = data.find(item => item.date === date);
+      const existing = data.find(x => x.date === date);
       if (existing) existing.value = value;
       else data.push({ date, value });
-      data.sort((a, b) => a.date.localeCompare(b.date));
-      setJSON("sweetEscapeWeights", data);
+      data.sort((a,b) => a.date.localeCompare(b.date));
+      setJSON("seWeights", data);
       $("weightInput").value = "";
       update();
     });

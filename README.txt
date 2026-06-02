@@ -1,19 +1,24 @@
-SWEET ESCAPE - NY LOGGA
+SWEET ESCAPE 3.0
 
-Den här versionen gör två saker:
-1. Byter appikonerna icon-192.png och icon-512.png.
-2. Byter även loggan inne i appen från texten "SE" till den nya Sweet Escape-bilden.
+Nyheter:
+- Ny blågrön/mint/korall design
+- Din Sweet Escape-bild används inne i appen istället för SE-rutan
+- Pengar sparade via fritextfält för veckokostnad
+- Mitt sparmål med progress
+- Nödläge: "JAG VILL HA GODIS!" med 15-minuterstimer
+- Badges: 1, 7, 14, 30, 60, 100 och 365 dagar
+- Dagens pepp: personlig text + hälsofördelar
+- Sug-skala 1-10
+- Viktlogg med enkel graf
+- Kalender
 
-Ladda upp och ersätt dessa filer på GitHub:
+Ladda upp och ersätt dessa filer i GitHub:
 - index.html
 - manifest.webmanifest
 - service-worker.js
 - icon-192.png
 - icon-512.png
 
-Tryck sedan Commit changes och vänta 1-3 minuter.
-
-Om gamla loggan fortfarande syns:
-- öppna appen i inkognitoläge
-- eller rensa cache
-- eller vänta någon minut till
+Tryck Commit changes och vänta 1-3 minuter.
+Öppna sedan:
+https://felinechaos.github.io/Sockerfri/?v=3

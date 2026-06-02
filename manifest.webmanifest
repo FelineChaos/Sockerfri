@@ -1,12 +1,12 @@
 {
   "name": "Sweet Escape",
   "short_name": "Sweet Escape",
-  "description": "Räkna dagar utan socker, följ sug, vikt och milstolpar.",
+  "description": "Räkna dagar utan socker, följ sötsug, vikt, pengar sparade och milstolpar.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#111218",
-  "theme_color": "#111218",
+  "background_color": "#071f22",
+  "theme_color": "#071f22",
   "orientation": "portrait",
   "icons": [
     {
