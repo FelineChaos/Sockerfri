@@ -1,26 +1,19 @@
-SWEET ESCAPE
+SWEET ESCAPE - NY LOGGA
 
-Ny version med:
-- Streak-räknare
-- Milstolpar och badges
-- Sug-skala 1-10
-- Viktlogg med enkel graf
-- Nödläge-knapp
-- Kalender
-- Mitt varför
+Den här versionen gör två saker:
+1. Byter appikonerna icon-192.png och icon-512.png.
+2. Byter även loggan inne i appen från texten "SE" till den nya Sweet Escape-bilden.
 
-Så uppdaterar du GitHub:
-1. Gå till ditt repository.
-2. Tryck Add file > Upload files.
-3. Ladda upp dessa filer och ersätt de gamla:
-   - index.html
-   - manifest.webmanifest
-   - service-worker.js
-   - icon-192.png
-   - icon-512.png
-4. Tryck Commit changes.
-5. Vänta 1-3 minuter.
-6. Öppna https://felinechaos.github.io/Sockerfri/
+Ladda upp och ersätt dessa filer på GitHub:
+- index.html
+- manifest.webmanifest
+- service-worker.js
+- icon-192.png
+- icon-512.png
 
-Tips:
-Om den gamla versionen syns, uppdatera sidan eller öppna i inkognitoläge.
+Tryck sedan Commit changes och vänta 1-3 minuter.
+
+Om gamla loggan fortfarande syns:
+- öppna appen i inkognitoläge
+- eller rensa cache
+- eller vänta någon minut till

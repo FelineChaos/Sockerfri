@@ -1,4 +1,4 @@
-const CACHE_NAME = "sweet-escape-v1";
+const CACHE_NAME = "sweet-escape-v2";
 const FILES = [
   "./",
   "./index.html",
