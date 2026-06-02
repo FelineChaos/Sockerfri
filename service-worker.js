@@ -1,12 +1,11 @@
-const CACHE_NAME = "sweet-escape-v31";
+const CACHE_NAME = "sweet-escape-v3";
 const FILES = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./service-worker.js",
   "./icon-192.png",
-  "./icon-512.png",
-  "./hero-banner.png"
+  "./icon-512.png"
 ];
 
 self.addEventListener("install", event => {

@@ -1,13 +1,16 @@
-SWEET ESCAPE 3.1
+SWEET ESCAPE 3.0
 
 Nyheter:
-- Första hero-bannern är inlagd högst upp i appen
-- Större premiumkänsla på startsidan
-- Dagens pepp visas direkt under streaken
-- Användartitel: Startklar, Rookie, Fighter, Warrior, Legend, Sugar Slayer
-- Pengar sparade är mer framträdande
-- Ny sektion: Livet tillbaka
-- Samma Sweet Escape-ikon används fortfarande i appen
+- Ny blågrön/mint/korall design
+- Din Sweet Escape-bild används inne i appen istället för SE-rutan
+- Pengar sparade via fritextfält för veckokostnad
+- Mitt sparmål med progress
+- Nödläge: "JAG VILL HA GODIS!" med 15-minuterstimer
+- Badges: 1, 7, 14, 30, 60, 100 och 365 dagar
+- Dagens pepp: personlig text + hälsofördelar
+- Sug-skala 1-10
+- Viktlogg med enkel graf
+- Kalender
 
 Ladda upp och ersätt dessa filer i GitHub:
 - index.html
@@ -15,8 +18,7 @@ Ladda upp och ersätt dessa filer i GitHub:
 - service-worker.js
 - icon-192.png
 - icon-512.png
-- hero-banner.png
 
 Tryck Commit changes och vänta 1-3 minuter.
 Öppna sedan:
-https://felinechaos.github.io/Sockerfri/?v=31
+https://felinechaos.github.io/Sockerfri/?v=3

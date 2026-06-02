@@ -389,98 +389,6 @@
 
     .hidden { display: none; }
 
-
-    .hero-banner {
-      width: 100%;
-      border-radius: 30px;
-      overflow: hidden;
-      margin-bottom: 14px;
-      border: 1px solid rgba(255,255,255,.16);
-      box-shadow: 0 22px 55px rgba(0,0,0,.34);
-      background: rgba(0,0,0,.18);
-    }
-
-    .hero-banner img {
-      width: 100%;
-      display: block;
-    }
-
-    .top-pep {
-      margin-top: 18px;
-      padding: 14px;
-      border-radius: 20px;
-      background: rgba(255,255,255,.085);
-      border: 1px solid rgba(255,255,255,.10);
-      color: var(--muted);
-      line-height: 1.45;
-      font-size: 14px;
-      text-align: left;
-    }
-
-    .top-pep strong {
-      color: var(--mint);
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .title-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px;
-      padding: 8px 13px;
-      border-radius: 999px;
-      background: rgba(255,126,103,.16);
-      border: 1px solid rgba(255,126,103,.35);
-      color: var(--gold);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-
-    .money-highlight {
-      grid-column: 1 / -1;
-      padding: 20px;
-      background:
-        radial-gradient(circle at top right, rgba(255,126,103,.20), transparent 38%),
-        rgba(255,255,255,.105);
-    }
-
-    .money-highlight strong {
-      font-size: 40px;
-      color: var(--mint);
-      letter-spacing: -1.5px;
-    }
-
-    .life-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .life-item {
-      background: rgba(255,255,255,.075);
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 18px;
-      padding: 13px;
-    }
-
-    .life-item strong {
-      display: block;
-      font-size: 22px;
-      color: var(--text);
-    }
-
-    .life-item span {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.25;
-    }
-
     footer {
       text-align: center;
       color: rgba(233,255,246,.42);
@@ -492,7 +400,6 @@
 <body>
   <div class="wrap">
     <section class="hero-card">
-      <div class="hero-banner"><img src="hero-banner.png" alt="Sweet Escape hero banner"></div>
       <div class="brand">
         <img class="logo" src="icon-192.png" alt="Sweet Escape logo" />
         <div>
@@ -504,8 +411,6 @@
       <div class="days-row">
         <div class="days" id="days">0</div>
         <div class="days-label">Dagar sockerfri</div>
-        <div class="title-pill" id="userTitle">Rookie</div>
-        <div class="top-pep" id="topPep"></div>
       </div>
 
       <div class="progress-head">
@@ -516,21 +421,10 @@
     </section>
 
     <section class="grid">
-      <div class="stat money-highlight"><strong id="moneySavedMini">0 kr</strong><span>Pengar sparade sedan start</span></div>
       <div class="stat"><strong id="best">0</strong><span>Längsta streak</span></div>
+      <div class="stat"><strong id="moneySavedMini">0 kr</strong><span>Pengar sparade</span></div>
       <div class="stat"><strong id="cravingAvg">–</strong><span>Snitt sug</span></div>
       <div class="stat"><strong id="weightDiff">–</strong><span>Viktförändring</span></div>
-    </section>
-
-    <section class="card">
-      <h2>Livet tillbaka</h2>
-      <p class="note">Allt du bygger upp när sockret får mindre makt. Storslaget? Ja. Lite dramatiskt? Också ja.</p>
-      <div class="life-grid">
-        <div class="life-item"><strong id="lifeDays">0</strong><span>Dagar sockerfri</span></div>
-        <div class="life-item"><strong id="lifeMoney">0 kr</strong><span>Pengar sparade</span></div>
-        <div class="life-item"><strong id="lifeBadges">0</strong><span>Badges upplåsta</span></div>
-        <div class="life-item"><strong id="lifeCravings">0</strong><span>Sugloggar sparade</span></div>
-      </div>
     </section>
 
     <section class="card">
@@ -631,7 +525,7 @@
 
   <script>
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js?v=31"));
+      window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js?v=3"));
     }
 
     const $ = id => document.getElementById(id);
@@ -654,15 +548,6 @@
       "Det här är inte straff. Det är frihet med bättre marknadsföring.",
       "Ett sug går över. En seger stannar kvar."
     ];
-
-    function userTitle(days) {
-      if (days >= 365) return "Sugar Slayer";
-      if (days >= 100) return "Legend";
-      if (days >= 30) return "Warrior";
-      if (days >= 7) return "Fighter";
-      if (days >= 1) return "Rookie";
-      return "Startklar";
-    }
 
     function healthText(days) {
       if (days >= 365) return "Ett helt år. Det här är inte längre en tillfällig utmaning. Det är en livsstilsförändring.";
@@ -859,14 +744,6 @@
 
       $("dailyPep").innerHTML = "<strong>Personligt:</strong><br>" + personalPeps[days % personalPeps.length];
       $("healthPep").innerHTML = "<strong>Hälsofördel:</strong><br>" + healthText(days);
-      $("topPep").innerHTML = "<strong>Dagens pepp</strong>" + personalPeps[days % personalPeps.length];
-      $("userTitle").textContent = userTitle(days);
-
-      const unlockedBadges = badgeList.filter(([d]) => days >= d).length;
-      $("lifeDays").textContent = days;
-      $("lifeMoney").textContent = fmt(saved);
-      $("lifeBadges").textContent = unlockedBadges;
-      $("lifeCravings").textContent = getJSON("seCravings", []).length;
 
       renderBadges(days);
       renderCalendar(start);
