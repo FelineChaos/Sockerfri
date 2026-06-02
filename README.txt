@@ -1,22 +1,26 @@
-SOCKERFRI - DELBAR APP
+SWEET ESCAPE
 
-Filer att ladda upp till GitHub:
-- index.html
-- manifest.webmanifest
-- service-worker.js
-- icon-192.png
-- icon-512.png
+Ny version med:
+- Streak-räknare
+- Milstolpar och badges
+- Sug-skala 1-10
+- Viktlogg med enkel graf
+- Nödläge-knapp
+- Kalender
+- Mitt varför
 
-Så publicerar du:
-1. Skapa ett Public repository på GitHub.
-2. Ladda upp filerna ovan.
-3. Gå till Settings > Pages.
-4. Välj Branch: main och folder: /root.
-5. Tryck Save.
-6. Vänta någon minut.
-7. Dela länken som GitHub Pages ger dig.
+Så uppdaterar du GitHub:
+1. Gå till ditt repository.
+2. Tryck Add file > Upload files.
+3. Ladda upp dessa filer och ersätt de gamla:
+   - index.html
+   - manifest.webmanifest
+   - service-worker.js
+   - icon-192.png
+   - icon-512.png
+4. Tryck Commit changes.
+5. Vänta 1-3 minuter.
+6. Öppna https://felinechaos.github.io/Sockerfri/
 
-Så installerar andra:
-1. Öppna länken i Chrome.
-2. Tryck på ⋮.
-3. Välj Installera app eller Lägg till på startskärmen.
+Tips:
+Om den gamla versionen syns, uppdatera sidan eller öppna i inkognitoläge.

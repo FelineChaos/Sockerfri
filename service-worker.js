@@ -1,4 +1,4 @@
-const CACHE_NAME = "sockerfri-v2";
+const CACHE_NAME = "sweet-escape-v1";
 const FILES = [
   "./",
   "./index.html",

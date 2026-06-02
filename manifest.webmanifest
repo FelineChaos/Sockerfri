@@ -1,7 +1,7 @@
 {
-  "name": "Sockerfri",
-  "short_name": "Sockerfri",
-  "description": "Räkna dagar utan socker, följ milstolpar och håll din streak.",
+  "name": "Sweet Escape",
+  "short_name": "Sweet Escape",
+  "description": "Räkna dagar utan socker, följ sug, vikt och milstolpar.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
