@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Sockerfri</title>
+  <meta name="theme-color" content="#111218" />
+  <meta name="description" content="En enkel app för att räkna dagar utan socker, följa milstolpar och hålla motivationen." />
+
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+
+  <style>
+    :root {
+      --bg: #111218;
+      --text: #f7f7fb;
+      --muted: #b9bbc8;
+      --soft: rgba(255,255,255,.10);
+      --soft2: rgba(255,255,255,.16);
+      --line: rgba(255,255,255,.14);
+      --pink: #ff8fb3;
+      --mint: #8be7c4;
+      --yellow: #ffe08a;
+      --red: #ff7272;
+      --radius: 28px;
+      --shadow: 0 24px 70px rgba(0,0,0,.38);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,143,179,.38), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(139,231,196,.28), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      padding: 18px;
+    }
+
+    .wrap {
+      width: min(470px, 100%);
+      margin: 0 auto;
+      padding-bottom: 24px;
+    }
+
+    header {
+      margin: 14px 0 16px;
+      padding: 22px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgba(255,255,255,.15), rgba(255,255,255,.06));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--pink), var(--mint));
+      color: #111;
+      font-weight: 900;
+      font-size: 24px;
+    }
+
+    .brand div:last-child {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.04;
+      letter-spacing: -1px;
+    }
+
+    .sub {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+
+    .card {
+      background: rgba(255,255,255,.10);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 14px;
+      backdrop-filter: blur(16px);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 26px 18px;
+    }
+
+    .days {
+      font-size: 96px;
+      line-height: .85;
+      font-weight: 950;
+      letter-spacing: -6px;
+      background: linear-gradient(135deg, var(--pink), var(--mint));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .label {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+      margin: 24px 0 8px;
+    }
+
+    .bar {
+      height: 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--pink), var(--mint));
+      transition: width .4s ease;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.085);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 16px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 27px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 7px;
+    }
+
+    h2 {
+      font-size: 19px;
+      margin: 0 0 12px;
+    }
+
+    input, button {
+      width: 100%;
+      border: 0;
+      border-radius: 18px;
+      font-size: 16px;
+      font-weight: 750;
+    }
+
+    input {
+      padding: 16px;
+      background: rgba(255,255,255,.12);
+      color: var(--text);
+      border: 1px solid var(--line);
+      outline: none;
+      margin-bottom: 10px;
+    }
+
+    input::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      opacity: .75;
+    }
+
+    button {
+      padding: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      color: #111;
+      background: linear-gradient(135deg, var(--pink), var(--mint));
+    }
+
+    .secondary {
+      background: rgba(255,255,255,.14);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .danger {
+      background: rgba(255,114,114,.18);
+      color: #ffdede;
+      border: 1px solid rgba(255,114,114,.38);
+    }
+
+    .milestone {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+    }
+
+    .milestone:last-child { border-bottom: 0; }
+
+    .badge {
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      background: rgba(255,255,255,.12);
+      color: var(--muted);
+    }
+
+    .done {
+      color: var(--text);
+    }
+
+    .done .badge {
+      background: rgba(139,231,196,.20);
+      color: var(--mint);
+    }
+
+    .quote {
+      color: var(--muted);
+      line-height: 1.48;
+      margin: 0;
+    }
+
+    .install {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .install strong { color: var(--text); }
+
+    footer {
+      text-align: center;
+      color: rgba(255,255,255,.42);
+      font-size: 12px;
+      padding: 10px 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">0</div>
+        <div>
+          <strong>Sockerfri</strong>
+          <div>streak tracker</div>
+        </div>
+      </div>
+      <h1>Räkna dina dagar utan socker.</h1>
+      <p class="sub">Sätt startdatum, följ din streak och låt sockerdemonen stå där i hörnet och skämmas.</p>
+    </header>
+
+    <section class="card hero">
+      <div class="days" id="days">0</div>
+      <div class="label" id="label">Starta din streak</div>
+
+      <div class="progress-head">
+        <span>Mål: 30 dagar</span>
+        <span id="percent">0%</span>
+      </div>
+      <div class="bar"><div class="fill" id="fill"></div></div>
+    </section>
+
+    <section class="grid">
+      <div class="stat">
+        <strong id="best">0</strong>
+        <span>Bästa streak</span>
+      </div>
+      <div class="stat">
+        <strong id="goalLeft">30</strong>
+        <span>Dagar kvar till 30</span>
+      </div>
+      <div class="stat">
+        <strong id="weeks">0</strong>
+        <span>Hela veckor</span>
+      </div>
+      <div class="stat">
+        <strong id="resets">0</strong>
+        <span>Omstarter</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Startdatum</h2>
+      <input type="date" id="startDate" />
+      <button id="saveBtn">Spara startdatum</button>
+      <button class="secondary" id="todayBtn">Jag börjar idag</button>
+      <button class="danger" id="resetBtn">Starta om streaken</button>
+    </section>
+
+    <section class="card">
+      <h2>Milstolpar</h2>
+      <div id="milestones"></div>
+    </section>
+
+    <section class="card">
+      <h2>Dagens påminnelse</h2>
+      <p class="quote" id="quote"></p>
+    </section>
+
+    <section class="card">
+      <h2>Installera appen</h2>
+      <p class="install">
+        Öppna länken i Chrome. Tryck på <strong>⋮</strong> och välj
+        <strong>Installera app</strong> eller <strong>Lägg till på startskärmen</strong>.
+        Sedan finns den som ikon på mobilen.
+      </p>
+    </section>
+
+    <footer>Data sparas bara på din egen enhet.</footer>
+  </div>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));
+    }
+
+    const $ = id => document.getElementById(id);
+
+    const quotes = [
+      "Craving är inte ett kommando. Det är bara hjärnan som skickar spam.",
+      "En dag till. Sockret kan vänta, dramatiskt nog.",
+      "Du bygger disciplin. Det är långsamt, irriterande och effektivt.",
+      "Perfekt behövs inte. Fortsätt bara.",
+      "Streaken lever. Vackert. Nästan provocerande."
+    ];
+
+    const milestoneList = [
+      [1, "Första dagen"],
+      [3, "Tre dagar"],
+      [7, "En vecka"],
+      [14, "Två veckor"],
+      [30, "En månad"],
+      [60, "Två månader"],
+      [100, "Hundra dagar"],
+      [365, "Ett år"]
+    ];
+
+    function toISO(date) {
+      return date.toISOString().split("T")[0];
+    }
+
+    function daysBetween(startDate) {
+      const start = new Date(startDate + "T00:00:00");
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      return Math.max(0, Math.floor((today - start) / 86400000));
+    }
+
+    function renderMilestones(days) {
+      $("milestones").innerHTML = milestoneList.map(([needed, title]) => {
+        const ok = days >= needed;
+        return `
+          <div class="milestone ${ok ? "done" : ""}">
+            <span>${title} · ${needed} ${needed === 1 ? "dag" : "dagar"}</span>
+            <span class="badge">${ok ? "Klar" : (needed - days) + " kvar"}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function update() {
+      const start = localStorage.getItem("sugarFreeStart");
+      const best = Number(localStorage.getItem("sugarFreeBest") || 0);
+      const resets = Number(localStorage.getItem("sugarFreeResets") || 0);
+
+      $("best").textContent = best;
+      $("resets").textContent = resets;
+
+      if (!start) {
+        $("days").textContent = "0";
+        $("label").textContent = "Starta din streak";
+        $("fill").style.width = "0%";
+        $("percent").textContent = "0%";
+        $("goalLeft").textContent = "30";
+        $("weeks").textContent = "0";
+        $("quote").textContent = "Välj ett startdatum. Appen gör resten, eftersom tydligen kalendern behövde en hjälte.";
+        renderMilestones(0);
+        return;
+      }
+
+      $("startDate").value = start;
+      const days = daysBetween(start);
+      const newBest = Math.max(best, days);
+      localStorage.setItem("sugarFreeBest", newBest);
+
+      const progress = Math.min(100, Math.round((days / 30) * 100));
+
+      $("days").textContent = days;
+      $("label").textContent = days === 1 ? "dag utan socker" : "dagar utan socker";
+      $("best").textContent = newBest;
+      $("goalLeft").textContent = Math.max(0, 30 - days);
+      $("weeks").textContent = Math.floor(days / 7);
+      $("fill").style.width = progress + "%";
+      $("percent").textContent = progress + "%";
+      $("quote").textContent = quotes[days % quotes.length];
+      renderMilestones(days);
+    }
+
+    $("saveBtn").addEventListener("click", () => {
+      if (!$("startDate").value) return;
+      localStorage.setItem("sugarFreeStart", $("startDate").value);
+      update();
+    });
+
+    $("todayBtn").addEventListener("click", () => {
+      const today = toISO(new Date());
+      localStorage.setItem("sugarFreeStart", today);
+      $("startDate").value = today;
+      update();
+    });
+
+    $("resetBtn").addEventListener("click", () => {
+      const today = toISO(new Date());
+      const resets = Number(localStorage.getItem("sugarFreeResets") || 0) + 1;
+      localStorage.setItem("sugarFreeResets", resets);
+      localStorage.setItem("sugarFreeStart", today);
+      $("startDate").value = today;
+      update();
+    });
+
+    update();
+  </script>
+</body>
+</html>
